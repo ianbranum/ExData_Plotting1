@@ -3,10 +3,21 @@ plot4 <- function() {
           loaddata()
      }
      
+     png(file="plot4.png", width=480, height=480)
+     
      par(mfcol=c(2,2))
      plot2()
-     plot3()
      
+     ##Lower left plot
+     xdata <- as.POSIXct(as.POSIXct(paste(dat1$Date, dat1$Time), format="%Y-%m-%d %H:%M:%S"))
+     ydata1 <- dat1$Sub_metering_1
+     ydata2 <- dat1$Sub_metering_2
+     ydata3 <- dat1$Sub_metering_3
+     plot(xdata, ydata1, type="l", xlab="", ylab="Energy sub metering")
+     lines(xdata, ydata2, type="l", col="red")
+     lines(xdata, ydata3, type="l", col="blue")
+     legend("topright",  c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), col = c("black", "red", "blue"), lty=1)     
+
      ## Upper right plot
      xdata <- as.POSIXct(as.POSIXct(paste(dat1$Date, dat1$Time), format="%Y-%m-%d %H:%M:%S"))
      ydata <- dat1$Voltage
@@ -20,7 +31,7 @@ plot4 <- function() {
      
      
          
-     dev.copy(png, file="plot4.png")
+##     dev.copy(png, file="plot4.png")
      dev.off()
 }
 
