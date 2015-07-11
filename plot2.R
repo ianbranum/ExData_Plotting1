@@ -1,5 +1,3 @@
-##dat1 = c()
-
 plot2 <- function() {
      if(length(dat1) == 0) {
           loaddata()
